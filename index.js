@@ -30,16 +30,31 @@ const fotos = {
     'imagen4':{img: "simi.jpg", url:"https://youtu.be/v6111W5BBWc"}
 };
 
-app.get("/ruta_1", (req, res) =>{
+app.get("/ruta-1", (req, res) =>{
     const llaves = Object.keys(fotos);
     res.render('ruta1',{foto: fotos[llaves[llaves.length * Math.random() << 0]]})
 });
 
 
-app.get("/ruta_2", (req, res) =>{
-    const data = req.body;
-    res.render('ruta2',{a:data})
+app.get("/ruta-2", (req, res) =>{
+    const data = Math.random();
+    res.render('ruta2',{data})
 });
+const randomValue = Math.random();
+const randomObject = {mensaje: 'Valor Aleatorio Json', valor: randomValue};
+app.get('/json-1', (req, res) => {
+    
+    res.render('json1',{randomObject});
+});
+
+
+const randomInt = Math.floor(Math.random() * 100);
+const randomArray = Array.from({ length: 5 }, () => Math.floor(Math.random() * 100));
+const randomObje = {entero_aleatorio: randomInt,arreglo_aleatorio: randomArray};
+// Ruta para devolver objeto JSON con valores aleatorios
+app.get('/json-2', (req, res) => {
+    res.render('json2',{randomObje});
+});  
 
 app.use((req, res) => {
     res.status(404);
