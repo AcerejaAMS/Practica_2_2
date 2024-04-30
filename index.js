@@ -33,7 +33,7 @@ const fotos = {
 app.get("/ruta-1", (req, res) =>{
     const llaves = Object.keys(fotos);
     res.render('ruta1',{foto: fotos[llaves[llaves.length * Math.random() << 0]]})
-});
+});+
 
 
 app.get("/ruta-2", (req, res) =>{
@@ -46,6 +46,17 @@ app.get('/json-1', (req, res) => {
     
     res.render('json1',{randomObject});
 });
+
+app.use(express.json());
+
+// Ruta POST básica para recibir datos
+app.post('/', (req, res) => {
+  res.json({ mensaje: 'Ruta iniciada POST' });
+});
+
+app.put('/', (req, res) => {
+    res.json({ mensaje: 'Ruta iniciada PUT' });
+  });
 
 
 const randomInt = Math.floor(Math.random() * 100);
@@ -60,6 +71,7 @@ app.use((req, res) => {
     res.status(404);
     res.render('error/404');
 });
+
 
 app.use((err,req,res,next) => {
     console.error(err.stack);
