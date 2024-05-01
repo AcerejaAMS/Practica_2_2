@@ -33,13 +33,14 @@ const fotos = {
 app.get("/ruta-1", (req, res) =>{
     const llaves = Object.keys(fotos);
     res.render('ruta1',{foto: fotos[llaves[llaves.length * Math.random() << 0]]})
-});+
+});
 
 
 app.get("/ruta-2", (req, res) =>{
     const data = Math.random();
     res.render('ruta2',{data})
 });
+
 const randomValue = Math.random();
 const randomObject = {mensaje: 'Valor Aleatorio Json', valor: randomValue};
 app.get('/json-1', (req, res) => {
